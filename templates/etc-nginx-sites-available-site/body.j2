@@ -46,6 +46,17 @@ server {
   }
   
   {% endif %}
+  
+  {% if item.status_allow_address is defined %}
+  
+  location /nginx_status {
+    stub_status on;
+    access_log   off;
+    allow {{ status_allow_address }};
+    deny all;
+  }
+
+  {% endif %}
 
   # --- logging ---------------------------------------------------------------
 
